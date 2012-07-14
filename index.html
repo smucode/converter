@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<title>Foo</title>
+
+<script src="lib/require.js"></script>
+<script src="lib/require.conf.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="css/converter.css" />
+
+<div style="text-align: center; padding-top: 100px">
+  <h1>Hello, I am the converter!</h1>
+  <p id="annotator" style="font-size: 20px; padding: 20px">&nbsp;</p>
+  <input id="input" type="text" style="width: 500px; font-size: 18px; padding: 10px" />
+  <p style="color: #999; padding: 10px">
+    Try typing something like "20 ms to kmh" or "please convert 10 kilometers per hour to meters per second"
+  </p>
+</div>
+
+<script>
+  require(['cs!src/annotator'], function (Annotator) {
+    var a = new Annotator();
+    var input = document.getElementById('input');
+    var message = document.getElementById('annotator');
+    var updateMessage = function(msg) {
+      message.innerHTML = msg;
+    };
+    var slowUpdater = _.debounce(updateMessage, 500);
+    input.onkeyup = function(e) {
+      var q = input.value;
+      var m = a.annotate(q);
+      slowUpdater(m);
+    }
+    message.innerHTML = a.annotate(input.value);
+  });
+</script>
