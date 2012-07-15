@@ -56,6 +56,10 @@ define ['underscore'], (_) ->
         o.algos[algo_unit] = (val) ->
           calc_via_kmh unit, algo_unit, val
 
+  # create reflective algos
+  _.each defs, (o, unit) ->
+    o.algos[unit] = (val) -> val
+  
   defs  
 
 

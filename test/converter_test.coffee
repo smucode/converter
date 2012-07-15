@@ -28,6 +28,9 @@ define ['cs!../src/converter'], (Converter) ->
     'should round to two digits': ->
       assert_conversion 'kmh', 10, 'ms', 2.78
 
+    'should be the same': ->
+      assert_conversion 'kmh', 10, 'kmh', 10
+
     'should support circular conversions': ->
       expected = 3.6
       actual = new CX('kmh', expected).to('knot').to('ms').to('kmh').val()
