@@ -13,3 +13,6 @@ define ['cs!../src/converter'], (Converter) ->
 
     'converts kmh to ms': ->
       assert_conversion 'kmh', 36, 'ms', 10
+
+    'should round to two digits': ->
+      assert_conversion 'kmh', 10, 'ms', 2.78

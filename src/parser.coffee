@@ -11,9 +11,11 @@ define ['underscore'], (_) ->
 
       return obj unless str
 
-      @findFrom str, obj
-      @findTo str, obj
       @findValue str, obj
+
+      props = @findProps str
+      obj.from = props[0]
+      obj.to   = props[1]
 
       obj
 
@@ -21,25 +23,11 @@ define ['underscore'], (_) ->
       arr = str.match /(\d)+/
       obj.value = arr[0] if arr?.length
 
-    findFrom: (str, obj) ->
-      @findProp str, obj, 'from'
-
-    findTo: (str, obj) ->
-      @findProp str, obj, 'to'
-
-    findProp: (str, obj, prop) ->
-      arr = str.split /\s/
-
-      # scan the parts
-      _.find arr, (s) =>
-        _.find @aliases, (list, unit) ->
-          if _.contains list, s
-            obj[prop] = unit unless prop == 'to' && obj.from == unit
-
-      return if obj[prop]
-
-      # scan the whole string
-      _.find @aliases, (list, unit) ->
-        _.find list, (alias) ->
-          if str.indexOf(alias) != -1
-            obj[prop] = unit unless prop == 'to' && obj.from == unit
+    findProps: (str) ->
+      props = []
+      _.each @aliases, (list, unit) ->
+        _.each list, (alias) ->
+          pos = str.indexOf(alias)
+          if pos != -1
+            props[pos] = unit
+      _.chain(props).compact().flatten().value()

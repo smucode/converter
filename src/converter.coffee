@@ -7,4 +7,5 @@ define [], () ->
         ms: (val) -> val / 3.6
 
     convert: (obj) ->
-      @algos[obj.from][obj.to](obj.value)
+      val = @algos[obj.from][obj.to](obj.value)
+      Math.round(val * 100) / 100

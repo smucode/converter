@@ -54,15 +54,15 @@ define ['cs!../src/parser'], (Parser) ->
       assert_ms_kmh('please convert ms to kmh yes :)')
       assert_ms_kmh('please convert meters per second to kilometers per hour now')
 
-    'should parse ms as from and kmh as to and correct value': ->
-      assert_all = (str, value) ->
-        o = p.parse str
-        assert.equals o.from, 'ms', str
-        assert.equals o.to, 'kmh', str
-        assert.equals o.value, value, str
+    'should parse the entire object correctly': ->
+      assert_all = (f, t, v, s) ->
+        o = p.parse s
+        assert.equals o.from,  f, s
+        assert.equals o.to,    t, s
+        assert.equals o.value, v, s
 
-      assert_all('100 ms to kmh', 100)
-      assert_all('i have 42 ms but what is it in kilometers per hour?', 42)
-
+      assert_all 'ms', 'kmh', '100', '100 ms to kmh'
+      assert_all 'ms', 'kmh', '42',  'i have 42 ms but what is it in kilometers per hour?'
+      assert_all 'kmh', 'ms', '10',  'please convert 10 kilometers per hour to meters per second'
 
 
