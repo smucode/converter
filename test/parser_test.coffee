@@ -18,7 +18,6 @@ define ['cs!../src/parser'], (Parser) ->
 
     'should parse meters per second': ->
       assert_ms = asserter('ms')
-
       assert_ms 'ms'
       assert_ms 'ms derp'
       assert_ms 'MS'
@@ -38,7 +37,6 @@ define ['cs!../src/parser'], (Parser) ->
 
     'should parse kilometers per hour': ->
       assert_kmh = asserter('kmh')
-
       assert_kmh 'kmh' # km/h
       assert_kmh 'kph'
       assert_kmh 'kmph'
