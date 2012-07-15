@@ -1,8 +1,8 @@
 define ['underscore'], (_) ->
   class Parser
     aliases: 
-      ms: ['ms',  'm/s', 'meters per second']
-      kmh: ['kmh', 'kph', 'kilometers per hour']
+      ms: ['m(p|/)?s', 'met(er|re)(s)? per second']
+      kmh: ['k(m|p|mp)h', 'kilomet(er|re)(s)? per hour']
 
     parse: (str) ->
       str = str?.toLowerCase()
@@ -27,7 +27,7 @@ define ['underscore'], (_) ->
       props = []
       _.each @aliases, (list, unit) ->
         _.each list, (alias) ->
-          pos = str.indexOf(alias)
+          pos = str.search(alias)
           if pos != -1
             props[pos] = unit
       _.chain(props).compact().flatten().value()

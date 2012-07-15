@@ -23,9 +23,9 @@ define ['cs!../src/parser'], (Parser) ->
       assert_ms 'ms derp'
       assert_ms 'MS'
       assert_ms 'm/s'
-      # mps
-      # metre per second
-      # meter per second
+      assert_ms 'mps'
+      assert_ms 'metre per second'
+      assert_ms 'meter per second'
       assert_ms 'meters per second'
       assert_ms 'meters per second derp'
 
@@ -34,9 +34,9 @@ define ['cs!../src/parser'], (Parser) ->
 
       assert_kmh 'kmh'
       assert_kmh 'kph'
-      # kmph
-      # kilometre/s per hour
-      # kilometer/s per hour
+      assert_kmh 'kmph'
+      assert_kmh 'kilometres per hour'
+      assert_kmh 'kilometer per hour'
       assert_kmh 'kilometers per hour'
 
     'should parse the value': ->
