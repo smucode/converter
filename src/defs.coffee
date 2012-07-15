@@ -14,7 +14,7 @@ define ['underscore'], (_) ->
     kmh:
       singular: 'kilometer per hour'
       plural:   'kilometers per hour'
-      aliases: ['k(m|p|mp)h', 'kilomet(er|re)(s)? per hour']
+      aliases: ['k(m|p|mp|m/)h', 'kilomet(er|re)(s)? per hour']
       algos: 
         ms:   (kmh) -> kmh / 3.6
         knot: (kmh) -> kmh / vars.nautic_mile

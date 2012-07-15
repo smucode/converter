@@ -37,7 +37,8 @@ define ['cs!../src/parser'], (Parser) ->
 
     'should parse kilometers per hour': ->
       assert_kmh = asserter('kmh')
-      assert_kmh 'kmh' # km/h
+      assert_kmh 'kmh'
+      assert_kmh 'km/h'
       assert_kmh 'kph'
       assert_kmh 'kmph'
       assert_kmh 'kilometres per hour'
