@@ -3,6 +3,10 @@ define [], () ->
     nautic_mile: 1.852
     mph_magic: 1.609344
 
+  calc_via_kmh = (from, to, val) ->
+    kmh = defs[from].algos.kmh val
+    defs.kmh.algos[to] kmh
+
   defs = 
     kmh:
       singular: 'kilometer per hour'
@@ -19,12 +23,8 @@ define [], () ->
       aliases: ['m(p|/)?s', 'met(er|re)(s)? per second']
       algos: 
         kmh:  (ms) -> ms * 3.6
-        knot: (ms) ->
-          kmh = defs.ms.algos.kmh ms
-          defs.kmh.algos.knot kmh
-        mph: (ms)  ->
-          kmh = defs.ms.algos.kmh ms
-          defs.kmh.algos.mph kmh
+        knot: (ms) -> calc_via_kmh 'ms', 'knot', ms
+        mph:  (ms) -> calc_via_kmh 'ms', 'mph', ms
 
     knot:
       singular: 'knot'
@@ -32,12 +32,8 @@ define [], () ->
       aliases: ['k(no)?t(s)?']
       algos: 
         kmh: (knot) -> knot * vars.nautic_mile
-        ms:  (knot) ->
-          kmh = defs.knot.algos.kmh knot
-          defs.kmh.algos.ms kmh
-        mph: (knot) ->
-          kmh = defs.knot.algos.kmh knot
-          defs.kmh.algos.mph kmh
+        ms:  (knot) -> calc_via_kmh 'knot', 'ms', knot
+        mph: (knot) -> calc_via_kmh 'knot', 'mph', knot
 
     mph: 
       singular: 'mile per hour'
@@ -45,9 +41,8 @@ define [], () ->
       aliases: ['mph', 'mile(s)? per hour']
       algos: 
         kmh:  (mph) -> mph * vars.mph_magic
-        ms:   (mph) ->
-          kmh = defs.mph.algos.kmh mph
-          defs.kmh.algos.ms kmh
-        knot: (mph) ->
-          kmh = defs.mph.algos.knot knot
-          defs.kmh.algos.knot kmh
+        ms:   (mph) -> calc_via_kmh 'mph', 'ms', mph
+        knot: (mph) -> calc_via_kmh 'mph', 'knot', mph
+
+
+
