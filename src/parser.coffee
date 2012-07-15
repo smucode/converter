@@ -17,8 +17,8 @@ define ['underscore', 'cs!./defs'], (_, defs) ->
       obj
 
     findValue: (str, obj) ->
-      arr = str.match /(\d)+/
-      obj.value = parseInt(arr[0], 10) if arr?.length
+      arr = str.match /(\d)+([\.,](\d))*/
+      obj.value = parseFloat(arr[0]?.replace(',', '.'), 10) if arr?.length
 
     findProps: (str) ->
       props = []

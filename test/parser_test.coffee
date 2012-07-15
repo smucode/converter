@@ -47,6 +47,15 @@ define ['cs!../src/parser'], (Parser) ->
       assert_value '100', 100
       assert_value 'la di da 1 bla bla 200', 1
 
+    '=> should support decimals': ->
+      assert_value = (str, expected) ->
+        o = p.parse str
+        assert.equals o.value, expected
+
+      assert_value '10.1', 10.1
+      assert_value 'la di da bla bla 20,1', 20.1
+
+
     'should parse ms as from and kmh as to': ->
       assert_ms_kmh = asserter('ms', 'kmh')
       
