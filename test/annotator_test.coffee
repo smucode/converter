@@ -19,3 +19,4 @@ define ['cs!../src/annotator'], (Annotator) ->
     'should respond in singular and plural': ->
       assert.equals a.annotate('1 ms kmh'), '1 meter per second is 3.6 kilometers per hour'
       assert.equals a.annotate('2 ms kmh'), '2 meters per second is 7.2 kilometers per hour'
+      assert.equals a.annotate('3.6 kmh ms'), '3.6 kilometers per hour is 1 meter per second'

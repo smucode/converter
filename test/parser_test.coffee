@@ -47,7 +47,7 @@ define ['cs!../src/parser'], (Parser) ->
       assert_value '100', 100
       assert_value 'la di da 1 bla bla 200', 1
 
-    '=> should support decimals': ->
+    'should support decimals': ->
       assert_value = (str, expected) ->
         o = p.parse str
         assert.equals o.value, expected
