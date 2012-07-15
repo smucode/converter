@@ -17,7 +17,7 @@ define ['cs!../src/converter'], (Converter) ->
     'should be the same': ->
       assert_conversion 'kmh', 10, 'kmh', 10
 
-    'should convert various combos based off fps': ->
+    'should convert various combos': ->
       units = ['ms', 'kmh', 'mph', 'knot', 'fps']
       vals = [
         [1,        3.6,      2.236936,   1.943844, 3.280840],

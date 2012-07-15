@@ -43,7 +43,7 @@ define ['underscore'], (_) ->
         kmh:  (mph) -> mph * vars.mph_magic
 
     fps: 
-      plural: 'feet pluraler second'
+      plural: 'feet per second'
       singular: 'foot per second'
       aliases: ['f(ee|oo)t per second', 'fps', 'ft/s', 'ft/sec']
       algos: 
