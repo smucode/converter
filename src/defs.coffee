@@ -2,7 +2,7 @@ define ['underscore'], (_) ->
   vars = 
     nautic_mile: 1.852
     mph_magic: 1.609344
-    fps_magic: 0.277778
+    fps_magic: 1.09728
 
   calc_via_kmh = (from, to, val) ->
     kmh = defs[from].algos.kmh val
