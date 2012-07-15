@@ -29,33 +29,32 @@ define ['underscore'], (_) ->
         kmh:  (ms) -> ms * 3.6
 
     knot:
-      singular: 'knot'
       plural: 'knots'
+      singular: 'knot'
       aliases: ['k(no)?t(s)?']
       algos: 
         kmh: (knot) -> knot * vars.nautic_mile
 
     mph: 
-      singular: 'mile per hour'
       plural: 'miles per hour'
+      singular: 'mile per hour'
       aliases: ['mph', 'mile(s)? per hour']
       algos: 
         kmh:  (mph) -> mph * vars.mph_magic
 
     fps: 
+      plural: 'feet pluraler second'
       singular: 'foot per second'
-      plural: 'feet per second'
       aliases: ['f(ee|oo)t per second', 'fps', 'ft/s', 'ft/sec']
       algos: 
         kmh:  (fps) -> fps * vars.fps_magic
 
+  # create default algo fns via kmh
   _.each defs, (o, unit) ->
     _.each _.keys(defs), (algo_unit) ->
       if !o.algos[algo_unit] and unit != algo_unit
         o.algos[algo_unit] = (val) ->
           calc_via_kmh unit, algo_unit, val
-
-
 
   defs  
 
