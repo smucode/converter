@@ -1,8 +1,5 @@
-define ['underscore'], (_) ->
+define ['underscore', 'cs!./defs'], (_, defs) ->
   class Parser
-    aliases: 
-      ms: ['m(p|/)?s', 'met(er|re)(s)? per second']
-      kmh: ['k(m|p|mp)h', 'kilomet(er|re)(s)? per hour']
 
     parse: (str) ->
       str = str?.toLowerCase()
@@ -25,8 +22,8 @@ define ['underscore'], (_) ->
 
     findProps: (str) ->
       props = []
-      _.each @aliases, (list, unit) ->
-        _.each list, (alias) ->
+      _.each defs, (o, unit) ->
+        _.each o.aliases, (alias) ->
           pos = str.search(alias)
           if pos != -1
             props[pos] = unit

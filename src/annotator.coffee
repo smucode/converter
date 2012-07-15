@@ -1,9 +1,5 @@
-define ['cs!./parser', 'cs!./converter'], (Parser, Converter) ->
+define ['cs!./parser', 'cs!./converter', 'cs!./defs'], (Parser, Converter, defs) ->
   class Annotator
-
-    aliases: 
-      'ms': 'meters per second'
-      'kmh': 'kilometers per hour'
 
     constructor: ->
       @p = new Parser
@@ -18,4 +14,4 @@ define ['cs!./parser', 'cs!./converter'], (Parser, Converter) ->
 
       val = @c.convert obj
 
-      "#{obj.value} #{@aliases[obj.from]} is #{val} #{@aliases[obj.to]}"
+      "#{obj.value} #{defs[obj.from].plural} is #{val} #{defs[obj.to].plural}"
