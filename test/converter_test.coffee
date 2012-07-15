@@ -33,10 +33,8 @@ define ['cs!../src/converter'], (Converter) ->
       actual = new CX('kmh', expected).to('knot').to('ms').to('kmh').val()
       assert.equals actual, expected
 
-      expected = 3.6      
       actual = new CX('kmh', expected).to('knot').to('ms').to('mph').to('kmh').val()
       assert.equals actual, expected
 
-      expected = 3.6      
       actual = new CX('kmh', expected).to('knot').to('fps').to('ms').to('mph').to('kmh').val()
       assert.equals actual, expected
