@@ -61,6 +61,7 @@ define ['cs!../src/parser'], (Parser) ->
         assert.equals o.to,    t, s
         assert.equals o.value, v, s
 
+      assert_all 'ms',  'kmh', 1,    '1 ms to kmh'
       assert_all 'ms', 'kmh', '100', '100 ms to kmh'
       assert_all 'ms', 'kmh', '42',  'i have 42 ms but what is it in kilometers per hour?'
       assert_all 'kmh', 'ms', '10',  'please convert 10 kilometers per hour to meters per second'

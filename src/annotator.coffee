@@ -14,4 +14,10 @@ define ['cs!./parser', 'cs!./converter', 'cs!./defs'], (Parser, Converter, defs)
 
       val = @c.convert obj
 
-      "#{obj.value} #{defs[obj.from].plural} is #{val} #{defs[obj.to].plural}"
+      "#{obj.value} #{@getUnit(obj.from, obj.value)} is #{val} #{@getUnit(obj.to, val)}"
+
+    getUnit: (unit, val) ->
+      if val is 1
+        defs[unit].singular
+      else
+        defs[unit].plural
