@@ -2,6 +2,17 @@ define ['cs!../src/converter'], (Converter) ->
   
   c = new Converter
 
+  class CX
+    constructor: (from, value) ->
+      @from = from
+      @value = value
+    to: (to) ->
+      @value = c.convert from: @from, to: to, value: @value
+      @from = to
+      return @
+    val: () -> @value
+
+
   assert_conversion = (from, from_val, to, to_val) ->
     val = c.convert from: from, to: to, value: from_val
     assert.equals val, to_val
@@ -16,3 +27,8 @@ define ['cs!../src/converter'], (Converter) ->
 
     'should round to two digits': ->
       assert_conversion 'kmh', 10, 'ms', 2.78
+
+    'should support circular conversions': ->
+      expected = 3.6
+      actual = new CX('kmh', expected).to('knot').to('ms').to('kmh').val()
+      assert.equals actual, expected

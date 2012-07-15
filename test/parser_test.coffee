@@ -29,6 +29,14 @@ define ['cs!../src/parser'], (Parser) ->
       assert_ms 'meters per second'
       assert_ms 'meters per second derp'
 
+    'should parse knots': ->
+      assert_ms = asserter('knot')
+
+      assert_ms 'knot'
+      assert_ms 'kt'
+      assert_ms 'knots'
+      assert_ms 'kts'
+
     'should parse kilometers per hour': ->
       assert_kmh = asserter('kmh')
 
@@ -52,6 +60,7 @@ define ['cs!../src/parser'], (Parser) ->
         o = p.parse str
         assert.equals o.value, expected
 
+      assert_value '0.123', 0.123
       assert_value '10.1', 10.1
       assert_value 'la di da bla bla 20,1', 20.1
 
